@@ -4,6 +4,11 @@ case $- in
       *) return;;
 esac
 
+# Override this to add something to the prompt.
+ext_prompt() {
+  :
+}
+
 # Extension point (for further customization without changing this file).
 if [ -f ~/.bashrc_ext ]; then
   . ~/.bashrc_ext
