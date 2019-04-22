@@ -1,0 +1,20 @@
+[user]
+  name = Bjorn A Mellem
+[alias]
+  dt = difftool -d
+[diff]
+  tool = meld
+[rerere]
+  enabled = 1
+[pack]
+  windowMemory = 100m
+  deltaCacheSize = 100m
+[http]
+  cookiefile = ~/.gitcookies
+[pull]
+  rebase = true
+[merge]
+  ff = only
+
+[include]
+  path = ~/.gitconfig_ext
