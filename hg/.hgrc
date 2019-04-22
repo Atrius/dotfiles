@@ -1,0 +1,16 @@
+[alias]
+diff-raw = diff -r .^ --unified 0 --root .
+meld = resolve --tool meld
+
+[extdiff]
+cmd.vdiff = meld
+
+[extensions]
+extdiff =
+purge =
+
+[ui]
+username = mellem
+merge = internal:merge3
+
+%include ~/.hgrc_ext
