@@ -1,5 +1,7 @@
 [alias]
 diff-raw = diff -r .^ --unified 0 --root .
+keep-dest = resolve -t 'internal:local'
+keep-source = resolve -t 'internal:other'
 meld = resolve --tool meld
 
 [extdiff]
