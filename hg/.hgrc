@@ -3,6 +3,7 @@ diff-raw = diff -r .^ --unified 0 --root .
 keep-dest = resolve -t 'internal:local'
 keep-source = resolve -t 'internal:other'
 meld = resolve --tool meld
+unpatch = !hg diff -r '$1' -r '$1^1' | hg import - --no-commit
 
 [extdiff]
 cmd.vdiff = meld
