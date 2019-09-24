@@ -80,6 +80,7 @@ set wildmode=longest:full,full
 
 autocmd BufNewFile,BufRead hg-editor-*.txt setlocal spell textwidth=80
 autocmd BufNewFile,BufRead .git/COMMIT_EDITMSG setlocal spell textwidth=72
+autocmd BufNewFile,BufRead *cl_description* setlocal spell textwidth=72
 
 " Show line numbers, but only if the window is wide enough that it helps.
 if &columns > 84
