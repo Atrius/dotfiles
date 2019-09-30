@@ -80,7 +80,7 @@ set wildmode=longest:full,full
 
 autocmd BufNewFile,BufRead hg-editor-*.txt setlocal spell textwidth=80
 autocmd BufNewFile,BufRead .git/COMMIT_EDITMSG setlocal spell textwidth=72
-autocmd BufNewFile,BufRead *cl_description* setlocal spell textwidth=72
+autocmd BufNewFile,BufRead cl_description* setlocal spell textwidth=72
 
 " Show line numbers, but only if the window is wide enough that it helps.
 if &columns > 84
@@ -131,3 +131,7 @@ call plug#end()
 " Note: plug#end automatically does the following:
 "   filetype plugin indent on
 "   syntax on
+
+" Note: formatoptions is reset to the Vim default when plug#end() is called.
+" Auto-indent for cl descriptions.
+autocmd BufNewFile,BufRead cl_description* setlocal formatoptions+=t
