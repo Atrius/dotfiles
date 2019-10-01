@@ -26,6 +26,9 @@ Plug 'vim-scripts/argtextobj.vim'
 " Better syntax highlighting for C++.
 Plug 'octol/vim-cpp-enhanced-highlight'
 
+" Easier session management through :Obsess.
+Plug 'tpope/vim-obsession'
+
 " LSP
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
