@@ -138,3 +138,18 @@ export EDITOR="vi"
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+
+# -----------------------------------------------------------------------------
+# Function definitions that should respect aliases:
+# -----------------------------------------------------------------------------
+
+# Easily start/attach to grouped tmux sessions.
+#   $1 - base session/group name
+#   $2 - sub-session name
+tm() {
+  tmux has-session -t ${1} &> /dev/null
+  if [ $? != 0 ]; then
+    tmux new-session -d -s ${1}
+  fi
+  tmux new-session -A -t ${1} -s ${1}-${2}
+}
