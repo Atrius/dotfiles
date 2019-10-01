@@ -74,6 +74,7 @@ set incsearch  " Show seach results while typing.
 set nobackup  " Don't litter the workspace with swap files.
 set ruler  " Show the cursor position (line/column number) all the time.
 set scrolloff=3  " Always show 3 lines above/below the cursor.
+set termguicolors&  " Required magic to fix colors in tmux
 set shiftwidth=2 tabstop=2 " Indent with 2 spaces instead of tabs!
 set wildmenu  " Tab-completion of files when typing : commands.
 set wildmode=longest:full,full
@@ -93,6 +94,7 @@ au FocusGained,BufEnter * :silent! !
 " Status line settings (makes airline work).
 set laststatus=2  "Every window has
 set noshowmode " show mode with airline instead
+set background=dark " Required magic to fix colors in tmux
 set t_Co=256
 
 " Key bindings
