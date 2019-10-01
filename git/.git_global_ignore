@@ -1,0 +1,2 @@
+# Don't track vim session files.
+Session.vim

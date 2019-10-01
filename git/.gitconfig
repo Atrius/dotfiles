@@ -2,6 +2,8 @@
   name = Bjorn A Mellem
 [alias]
   dt = difftool -d
+[core]
+  excludesFile = ~/.git_global_ignore
 [diff]
   tool = meld
 [rerere]
