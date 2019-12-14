@@ -4,11 +4,6 @@ case $- in
       *) return;;
 esac
 
-# Override this to add something to the prompt.
-ext_prompt() {
-  :
-}
-
 # Extension point (for further customization without changing this file).
 if [ -f ~/.bashrc_ext ]; then
   . ~/.bashrc_ext
@@ -100,7 +95,12 @@ git_prompt() {
 if [[ "${#PROMPT_SEGMENTS[@]}" -eq 0 ]]; then
   declare -a PROMPT_SEGMENTS=(
       'git_prompt'
-      'ext_prompt'
+      # Add more by overriding PROMPT_SEGMENTS.
+      # For example,
+      # declare -a PROMPT_SEGMENTS=(
+      #   'ext_prompt'
+      #   'git_prompt'
+      # )
   )
 fi
 
@@ -118,7 +118,11 @@ prompt_command() {
     done
     PS1+='\$ '
   else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(git_prompt)$(ext_prompt)\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w'
+    for segment in "${PROMPT_SEGMENTS[@]}"; do
+      "$segment"
+    done
+    PS1+='\$ '
   fi
 }
 
