@@ -87,24 +87,43 @@ git_prompt() {
     done
   done
   IFS=$tmp_ifs
+  # Start dark green coloring.
+  PS1+='\[\e[0;32m\]'
   # Note: using sed to add parentheses instead of printf prevents them from
   # showing up when we're *not* on a git branch.  There might be a cleaner way
   # to do this, but this one is simple enough and works.
-  git rev-parse --abbrev-ref HEAD 2> /dev/null | xargs printf "%s$modified$added$deleted$untracked" | sed -e 's/\(.*\)/\(\1\)/'
+  PS1+=$(git rev-parse --abbrev-ref HEAD 2> /dev/null | xargs printf "%s$modified$added$deleted$untracked" | sed -e 's/\(.*\)/\(\1\)/')
+  # End dark green coloring.
+  PS1+='\[\e[m\]'
 }
 
-if [ "$color_prompt" = yes ]; then
-  # Explanation of formatting:
-  # \e[{color_code}m to start coloring.
-  # \e[1m starts bold.
-  # \e[1;{color_code}m starts bold and coloring.
-  # \e[0m resets formatting.
-  # Where {color_code} is a color.  32 is dark green, 34 is dark blue.
-  PS1='${debian_chroot:+($debian_chroot)}\[\e[1;34m\]\u@\h\[\e[m\]:\[\e[1;34m\]\w\[\e[m\]\[\e[0;32m\]$(git_prompt)$(ext_prompt)\[\e[m\]\$ '
-else
-  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(git_prompt)$(ext_prompt)\$ '
+if [[ "${#PROMPT_SEGMENTS[@]}" -eq 0 ]]; then
+  declare -a PROMPT_SEGMENTS=(
+      'git_prompt'
+      'ext_prompt'
+  )
 fi
-unset color_prompt force_color_prompt
+
+prompt_command() {
+  if [ "$color_prompt" = yes ]; then
+    # Explanation of formatting:
+    # \e[{color_code}m to start coloring.
+    # \e[1m starts bold.
+    # \e[1;{color_code}m starts bold and coloring.
+    # \e[0m resets formatting.
+    # Where {color_code} is a color.  32 is dark green, 34 is dark blue.
+    PS1='${debian_chroot:+($debian_chroot)}\[\e[1;34m\]\u@\h\[\e[m\]:\[\e[1;34m\]\w\[\e[m\]'
+    for segment in "${PROMPT_SEGMENTS[@]}"; do
+      "$segment"
+    done
+    PS1+='\$ '
+  else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(git_prompt)$(ext_prompt)\$ '
+  fi
+}
+
+unset PROMPT_COMMAND
+PROMPT_COMMAND=prompt_command
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
