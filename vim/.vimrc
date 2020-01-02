@@ -54,7 +54,7 @@ let g:airline#extensions#tabline#buffer_nr_show = 1 " tab number
 let g:airline#extensions#tabline#fnamecollapse = 1 " /a/m/model.rb
 
 " Fuzzy finder
-Plug 'junegunn/fzf', {'do': './install --bin'}
+Plug 'junegunn/fzf', {'dir': '~/fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 
 " Changes the default source for FZF to try getting files known to hg/git first,

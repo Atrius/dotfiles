@@ -176,3 +176,8 @@ tm() {
   fi
   tmux new-session -A -t ${1} -s ${1}-${2}
 }
+
+# Install fuzzy-find completions and keybindings.  The vimrc in this repo
+# installs fuzzy-find at '~/fzf' using vim-plug, or it may be cloned from
+# https://github.com/junegunn/fzf and installed by hand.
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
