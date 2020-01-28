@@ -114,6 +114,12 @@ nnoremap <C-k> <C-u>
 vnoremap <C-j> <C-d>
 vnoremap <C-k> <C-u>
 
+" Change ctrl+h/j/k/l to move around in insert mode.
+inoremap <c-k> <up>
+inoremap <c-j> <down>
+inoremap <c-h> <left>
+inoremap <c-l> <right>
+
 " Create a :Bc command to close a buffer without closing the window.
 command! Bc bp|bd #
 
