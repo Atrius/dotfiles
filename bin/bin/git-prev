@@ -1,0 +1,6 @@
+#!/bin/sh
+
+prev=$(git rev-parse --abbrev-ref HEAD@{upstream})
+if [[ -n $prev ]]; then
+  git checkout $prev
+fi
