@@ -1,20 +1,27 @@
 #!/bin/sh
 
 current=$(git rev-parse --abbrev-ref HEAD)
-next=
+next=()
 IFS='
 '
 for branch in `git branch --format='%(refname:short)'`; do
   upstream=$(git rev-parse --abbrev-ref "$branch@{upstream}" 2> /dev/null)
   if [[ "$upstream" == "$current" ]]; then
-    if [[ -n $next ]]; then
-      echo "Multiple downstream branches: $next and $branch"
-      exit 1
-    fi
-    next=$branch
+    next+=($branch)
   fi
 done
 
-if [[ -n $next ]]; then
-  git checkout $next
+if [[ ${#next[@]} -gt 1 ]]; then
+  echo "Multiple downstream branches:"
+  for branch in ${next[@]}; do
+    echo "  "$branch
+  done
+  exit 1
 fi
+
+if [[ ${#next[@]} -lt 1 ]]; then
+  echo "No downstream branches"
+  exit 1
+fi
+
+git checkout ${next[0]}
