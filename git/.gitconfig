@@ -4,6 +4,7 @@
   dt = difftool -d
   next = !git-next
   prev = !git-prev
+  xl = log --branches --decorate --oneline --graph
 [core]
   excludesFile = ~/.git_global_ignore
 [diff]
