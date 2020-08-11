@@ -8,6 +8,7 @@ let g:ycm_auto_trigger = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_key_list_select_completion = ['<Down>', '<Enter>']
 let g:ycm_always_populate_location_list = 1
+let g:ycm_auto_hover=''
 
 nnoremap gd :YcmCompleter GoTo<CR>
 nnoremap gr :YcmCompleter GoToReferences<CR>
