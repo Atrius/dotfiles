@@ -1,0 +1,43 @@
+#!/bin/bash
+
+opts=`getopt -o i --long include-self -n 'parse-options' -- "$@"`
+
+if [ $? != 0 ]; then
+  echo "Failed to parse options" >&2;
+  exit 1;
+fi
+
+eval set -- "$opts"
+
+include_self=0
+while true; do
+  case "$1" in
+    -i | --include-self ) include_self=1; shift;;
+    -- ) shift; break;;
+    * ) break;;
+  esac
+done
+
+cmd=$@
+self=$(git rev-parse --abbrev-ref HEAD)
+
+traverse_children() {
+  local current=$1
+  # TODO(mellem): Figure out if there's a way to do this by making the checkout
+  # part of cmd and passing $current to it.
+  git checkout $current > /dev/null 2> /dev/null
+  if [[ $current != $self || $include_self -ne 0 ]]; then
+    eval $cmd
+  fi
+  IFS='
+'
+  for branch in `git branch --format='%(refname:short)'`; do
+    upstream=$(git rev-parse --abbrev-ref "$branch@{upstream}" 2> /dev/null)
+    if [[ "$upstream" == "$current" ]]; then
+      traverse_children $branch
+    fi
+  done
+  git checkout $current > /dev/null 2> /dev/null
+}
+
+traverse_children $self

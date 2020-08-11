@@ -2,6 +2,7 @@
   name = Bjorn A Mellem
 [alias]
   dt = difftool -d
+  dfs = !git-dfs
   next = !git-next
   prev = !git-prev
   xl = log --branches --decorate --oneline --graph
