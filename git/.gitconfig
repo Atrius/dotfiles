@@ -1,10 +1,12 @@
 [user]
   name = Bjorn A Mellem
 [alias]
+  co = checkout
   dt = difftool -d
   dfs = !git-dfs
   next = !git-next
   prev = !git-prev
+  st = status
   xl = log --branches --decorate --oneline --graph
 [core]
   excludesFile = ~/.git_global_ignore
