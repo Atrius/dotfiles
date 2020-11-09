@@ -27,6 +27,9 @@ Plug 'vim-scripts/argtextobj.vim'
 " Better syntax highlighting for C++.
 Plug 'octol/vim-cpp-enhanced-highlight'
 
+" Syntax highlighting for flatbuffers.
+Plug 'https://github.com/zchee/vim-flatbuffers'
+
 " Easier session management through :Obsess.
 Plug 'tpope/vim-obsession'
 
