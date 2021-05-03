@@ -20,12 +20,9 @@ HISTSIZE=
 HISTFILESIZE=
 
 # If running under tmux, use per-session, per-window, per-pane history files.
-set_tmux_histfile() {
-  if [ ! -z "$TMUX" ]; then
-    HISTFILE="$HOME/.history.d/"`tmux display-message -p '#{session_group}:#I.#P'`
-  fi
-}
-set_tmux_histfile
+if [ ! -z "$TMUX" ]; then
+  HISTFILE="$HOME/.history.d/"`tmux display-message -p '#{session_group}:#I.#P'`
+fi
 
 # Check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -138,7 +135,7 @@ unset PROMPT_COMMAND
 PROMPT_COMMAND=prompt_command
 
 # Save and reload history after each command.
-PROMPT_COMMAND="set_tmux_histfile ; history -a ; history -c ; history -r ; $PROMPT_COMMAND"
+PROMPT_COMMAND="history -a ; history -c ; history -r ; $PROMPT_COMMAND"
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
