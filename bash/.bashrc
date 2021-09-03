@@ -21,7 +21,7 @@ HISTFILESIZE=
 
 # If running under tmux, use per-session, per-window, per-pane history files.
 if [ ! -z "$TMUX" ]; then
-  HISTFILE="$HOME/.history.d/"`tmux display-message -p '#{session_group}:#I.#P'`
+  HISTFILE="$HOME/.history.d/"`tmux display-message -p -t $TMUX_PANE '#{session_group}:#I.#P'`
 fi
 
 # Check the window size after each command and, if necessary,
