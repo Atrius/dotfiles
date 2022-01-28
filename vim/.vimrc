@@ -71,8 +71,10 @@ let $FZF_DEFAULT_COMMAND="(hg files || git ls-tree -r --name-only HEAD || rg --f
 " Display a top-down list, rather than the default bottom-up list.
 let $FZF_DEFAULT_OPTS='--layout=reverse'
 
-nnoremap gb :Buffers<CR>  " Fuzzy-finder for open buffers
-nnoremap gf :Files<CR>    " Fuzzy-finder for files
+" Fuzzy-finder for open buffers
+nnoremap gb :Buffers<CR>
+" Fuzzy-finder for files
+nnoremap gf :Files<CR>
 
 " Misc. settings (alphabetized):
 set autoindent smartindent nocindent
