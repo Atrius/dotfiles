@@ -36,6 +36,9 @@ Plug 'tpope/vim-obsession'
 " Automatically detect indentation settings.
 Plug 'tpope/vim-sleuth'
 
+" GN syntax highlighting.
+Plug 'https://github.com/kalcutter/vim-gn'
+
 " LSP
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
