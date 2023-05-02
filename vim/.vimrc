@@ -69,7 +69,7 @@ Plug 'junegunn/fzf.vim'
 
 " Changes the default source for FZF to try getting files known to hg/git first,
 " and only use find on the whole tree if that doesn't work.
-let $FZF_DEFAULT_COMMAND="(hg files || git ls-tree -r --name-only HEAD || rg --files) 2> /dev/null"
+let $FZF_DEFAULT_COMMAND="(hg files || git ls-files --recurse-submodules || rg --files) 2> /dev/null"
 
 " Display a top-down list, rather than the default bottom-up list.
 let $FZF_DEFAULT_OPTS='--layout=reverse'
